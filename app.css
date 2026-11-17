@@ -1,0 +1,47 @@
+/* Pagina de filtro: video de la camara a pantalla completa con escena 3D y HUD tactico encima. */
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: 'Rajdhani', 'Segoe UI', system-ui, sans-serif;
+}
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Video y ayudas 2D en espejo, como un espejo real */
+#video-renderer,
+#canvas-renderer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+#video-renderer {
+    z-index: 1;
+}
+
+#canvas-renderer {
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Capa HUD tactica 2D sin espejo para que textos y lecturas sean 100% legibles */
+#hud-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+}

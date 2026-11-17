@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night-Bites Vision — Filtro Facial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- Los modulos de three.js (exportadores, etc.) importan "three" -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.181.1/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.181.1/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <video id="video-renderer" playsinline autoplay muted></video>
+        <canvas id="canvas-renderer"></canvas>
+        <canvas id="hud-canvas"></canvas>
+    </div>
+
+    <script type="module">
+        import { startFaceFilter } from "./js/mediapipe/mediapipe_controller.js";
+
+        // Escena exportada desde el editor de three.js. Por defecto app.json;
+        // para probar otra sin tocar el codigo: index.html?json=otra_escena.json
+        const scene = new URLSearchParams(location.search).get("json") || "app.json";
+
+        startFaceFilter(scene);
+    </script>
+</body>
+
+</html>
